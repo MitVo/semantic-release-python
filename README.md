@@ -54,6 +54,7 @@ Add this action to your workflow:
 
 
 ## 📄 Sources
+- [Bump2version Tool](https://pypi.org/project/bump2version/) 
 - [semantic-release tool](https://github.com/semantic-release/semantic-release)
 - [semantic-release configuration file](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md)
 - [gitmoji plugin](https://github.com/momocow/semantic-release-gitmoji)
