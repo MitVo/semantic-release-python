@@ -1,0 +1,65 @@
+name: 'Custom Semantic Release for Python'
+description: 'A customized GitHub Action to run semantic-release for Python projects'
+author: 'Your Name or Organization'
+inputs:
+  github_token:
+    description: 'GitHub token for authentication (required)'
+    required: true
+  release_branch:
+    description: 'Branch to perform the release from'
+    required: false
+    default: 'master'
+  module_name:
+    description: 'Name of the Python resource module (required for Python projects)'
+    required: true
+  pypi_token:
+    description: 'PyPI token for publishing packages (required for Python projects)'
+    required: true 
+  pypi_username:
+    description: 'PyPI username for publishing packages (required for Python projects)'
+    required: false
+    default: '__token__'  # Default value for PyPI username   
+  is_cloud_function:
+    description: 'Indicates if the module is a cloud function (optional)'
+    required: false
+    default: 'false'  
+outputs:
+  release_version:
+    description: 'The version of the release created by semantic-release'  
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install semantic-release and plugins
+      run: |
+        echo "Copying semantic-release configuration files"
+        cp ${{ github.action_path }}/.releaserc.js ${{ github.workspace }}/.releaserc.js 
+        cp ${{ github.action_path }}/.prerelease-releaserc.js ${{ github.workspace }}/.prerelease-releaserc.js
+        echo "Copying package.json"
+        cp ${{ github.action_path }}/package.json ${{ github.workspace }}/package.json
+        echo "Copying template files"
+        cp ${{ github.action_path }}/templates ${{ github.workspace }}/templates -r
+        echo "Current directory: ${{ github.workspace }}"
+        cd ${{ github.workspace }}
+        echo "Check files in the current directory"
+        ls -la
+        echo "Installing semantic-release and plugins"
+        npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/exec semantic-release-gitmoji 
+      shell: bash
+    - name: Run semantic-release
+      id: semantic_release
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        MODULE: ${{ inputs.module_name }}
+        PYPI_TOKEN: ${{ inputs.pypi_token }}
+        PYPI_USERNAME: ${{ inputs.pypi_username }}
+        IS_CLOUD_FUNCTION: ${{ inputs.is_cloud_function }}
+      run: |
+        cd ${{ github.workspace }}
+        npx semantic-release 
+        latest_tag=$(git describe --tags --abbrev=0)
+        echo "release_version=${latest_tag}" >> $GITHUB_OUTPUT
+      shell: bash  
