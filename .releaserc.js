@@ -72,9 +72,7 @@ module.exports = {
       "@semantic-release/git",
       {
         assets: [
-          "setup.py",
-          "CHANGELOG.md",
-          "pyproject.toml",
+          "CHANGELOG.md"
         ],
         message: [
           ':bookmark: ${nextRelease.version} [skip ci]'
