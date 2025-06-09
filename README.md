@@ -52,6 +52,10 @@ Add this action to your workflow:
 - Installs all dependencies at runtime.
 - See action.yml for the full workflow.
 
+## 🚨 Prerequisites
+- The image use to run the workflow must have installed Python with the dependencies `build twine bump2version` before execute the semantic release action.
+- The Python project needs to have a `.bumpversion.cfg` file configured with the specification of the project, see an example in [here](https://pypi.org/project/bump2version/) .
+
 
 ## 📄 Sources
 - [Bump2version Tool](https://pypi.org/project/bump2version/) 

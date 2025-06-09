@@ -58,7 +58,7 @@ module.exports = {
       "@semantic-release/exec",
       {
         "prepareCmd": "bump2version --new-version ${nextRelease.version} ${nextRelease.type} --verbose && python -m build",
-        "publishCmd": "twine upload dist/* ",
+        "publishCmd": "twine upload -u PYPI_USERNAME -p PYPI_PASSWORD dist/*",
         "successCmd": 'echo "Release ${nextRelease.version} published successfully"'
       }
     ],
