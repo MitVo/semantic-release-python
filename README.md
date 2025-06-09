@@ -32,8 +32,6 @@ Add this action to your workflow:
 | github_token	| GitHub token for authentication	| Yes	| |
 | release_branch	| Branch to perform the release from	| No	| master |
 | module_name	| Name of the Python resource module	| Yes	| |
-| pypi_token	| PyPI token for publishing packages	| Yes	| |
-| pypi_username	| PyPI username for publishing packages	| No	| `__token__` |
 | is_cloud_function	| Indicates if the module is a cloud function	| No	| false |
 
 
