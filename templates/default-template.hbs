@@ -12,6 +12,13 @@
 {{/each}}
 {{/if}}
 
+{{#if lock}}
+## 🔒 Security Fixes
+{{#each lock}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
 {{#if bug}}
 ## 🐛 Bug Fixes
 {{#each bug}}
@@ -36,6 +43,35 @@
 {{#if boom}}
 ## 💥 Breaking Changes
 {{#each boom}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if zap}}
+## ⚡️ Enhancements
+{{#with zap}}
+{{#each zap}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if pencil}}
+## ✏️ Documentation Changes
+{{#each pencil}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if white_check_mark}}
+## ✅ Tests
+{{#each white_check_mark}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if hammer}}
+## 🔨 Refactor
+{{#each hammer}}
 - {{> commitTemplate}}
 {{/each}}
 {{/if}}
