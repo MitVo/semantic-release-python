@@ -8,14 +8,7 @@ inputs:
   release_branch:
     description: 'Branch to perform the release from'
     required: false
-    default: 'master'
-  module_name:
-    description: 'Name of the Python resource module (required for Python projects)'
-    required: true
-  is_cloud_function:
-    description: 'Indicates if the module is a cloud function (optional)'
-    required: false
-    default: 'false'  
+    default: 'master' 
 outputs:
   release_version:
     description: 'The version of the release created by semantic-release'  
@@ -46,8 +39,6 @@ runs:
       id: semantic_release
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
-        MODULE: ${{ inputs.module_name }}
-        IS_CLOUD_FUNCTION: ${{ inputs.is_cloud_function }}
       run: |
         cd ${{ github.workspace }}
         npx semantic-release 

@@ -6,7 +6,6 @@ A customized GitHub Action to automate semantic versioning and changelog generat
 
 - Automated semantic versioning based on commit messages (supports gitmoji).
 - Generates and updates changelogs using custom Handlebars templates.
-- Publishes Python packages to PyPI.
 - Supports both standard and prerelease workflows.
 - Customizable for cloud function modules.
 
@@ -19,10 +18,6 @@ Add this action to your workflow:
   uses: ./  # or use your repository path
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
-    module_name: your_module_name ## src/my_module or my_module
-    pypi_token: ${{ secrets.PYPI_TOKEN }}
-    pypi_username: __token__  # Optional, defaults to __token__
-    is_cloud_function: false  # Optional
 
 ```
 
@@ -31,8 +26,6 @@ Add this action to your workflow:
 |-------|------|------|------|
 | github_token	| GitHub token for authentication	| Yes	| |
 | release_branch	| Branch to perform the release from	| No	| master |
-| module_name	| Name of the Python resource module	| Yes	| |
-| is_cloud_function	| Indicates if the module is a cloud function	| No	| false |
 
 
 ## 📤 Outputs
