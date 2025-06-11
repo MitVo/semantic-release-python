@@ -12,6 +12,7 @@ inputs:
 outputs:
   release_version:
     description: 'The version of the release created by semantic-release'  
+    value: ${{ steps.semantic_release.outputs.release_version }}
 runs:
   using: 'composite'
   steps:
